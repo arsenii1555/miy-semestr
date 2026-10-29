@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Мій семестр</title>
-<meta name="description" content="Розклад пар, цілі, події та оцінки на семестр. Працює без інтернету, дані зберігаються лише на твоєму пристрої.">
+<meta name="description" content="Розклад пар, цілі, звички, події та оцінки на семестр. Працює без інтернету, дані зберігаються лише на твоєму пристрої.">
 <meta name="theme-color" content="#eef1f6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d1220" media="(prefers-color-scheme: dark)">
 <meta name="mobile-web-app-capable" content="yes">
@@ -65,13 +65,14 @@ h2{font-family:var(--font-display);font-weight:500;font-size:14px;letter-spacing
 h2 small{font-family:var(--font-body);font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0}
 
 /* hero */
-.hero{background:var(--surface);border-radius:var(--r);padding:16px;border:1px solid var(--line);display:grid;gap:10px}
+.hero{background:var(--surface);border-radius:var(--r);padding:10px 14px;border:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:baseline}
+.hero>.subj,.hero>.meta,.hero>.bar{grid-column:1/-1}
 .hero.live{border-color:var(--now);box-shadow:0 0 0 3px var(--now-soft)}
-.hero .state{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.hero .state{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 .hero.live .state{color:var(--now)}
-.hero .subj{font-family:var(--font-display);font-size:19px;font-weight:500;line-height:1.2}
-.hero .meta{color:var(--muted);font-size:14px}
-.hero .count{font-family:var(--font-mono);font-size:13px}
+.hero .subj{font-family:var(--font-display);font-size:16px;font-weight:500;line-height:1.2}
+.hero .meta{color:var(--muted);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hero .count{font-family:var(--font-mono);font-size:12px;color:var(--muted);grid-row:1;grid-column:2;text-align:right}
 .bar{height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden}
 .bar>i{display:block;height:100%;background:var(--now);border-radius:6px}
 
@@ -115,10 +116,23 @@ h2 small{font-family:var(--font-body);font-size:12px;color:var(--muted);font-wei
 .step .sd{font-size:12px;color:var(--muted);font-family:var(--font-mono);white-space:nowrap}
 .step.done .st{text-decoration:line-through;color:var(--muted)}
 .mini{display:flex;flex-direction:column;gap:10px}
+.wgoals{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:4px 14px}
+.wgoal{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:baseline;width:100%;background:none;border:0;padding:11px 0;text-align:left;color:inherit;font:inherit}
+.wgoal+.wgoal{border-top:1px solid var(--line)}
+.wgoal .title{font-size:14px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wgoal b{font-family:var(--font-mono);font-size:13px;color:var(--gc)}
+.wgoal .gbar{grid-column:1/-1;height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden}
+.wgoal .gbar>i{display:block;height:100%;background:var(--gc);border-radius:6px;transition:width .3s}
 .mini-goal{display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;text-align:left;width:100%}
 .mini-goal .gbar{grid-column:1/-1;height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden}
 .mini-goal .gbar>i{display:block;height:100%;background:var(--gc)}
 .mini-goal b{font-family:var(--font-mono);font-size:13px;color:var(--gc)}
+
+/* profile menu */
+.menu-row{padding-block:15px}
+.menu-meta{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chev{font-size:20px;line-height:1;color:var(--muted)}
+.subhead{display:flex;align-items:center}
 
 /* schedule in profile */
 .sub-h{font-family:var(--font-display);font-weight:500;font-size:13.5px;margin:24px 0 10px}
@@ -154,6 +168,7 @@ h2 small{font-family:var(--font-body);font-size:12px;color:var(--muted);font-wei
 .col.today .d{color:var(--now)}
 .grow{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:12px 14px;border:0;border-top:1px solid var(--line);background:none;width:100%;text-align:left;align-items:center}
 .grow:first-child{border-top:0}
+.ach-act{display:flex;gap:6px;align-items:center}
 .grade{font-family:var(--font-mono);font-size:15px;font-weight:500;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .grade .sub{display:inline;font-size:12px}
 .ects{display:inline-block;min-width:24px;text-align:center;font-size:11.5px;font-weight:600;padding:2px 6px;border-radius:6px;margin-left:8px;vertical-align:1px}
@@ -177,6 +192,42 @@ h2 small{font-family:var(--font-body);font-size:12px;color:var(--muted);font-wei
 /* auto-shift switch */
 .shift{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
 .shift+.shift{border-top:0;padding-top:0}
+.ctime{display:none}
+form:has(select[name=pair] option[value="0"]:checked) .ctime{display:grid}
+.seg.seg2{grid-template-columns:repeat(2,1fr)}
+.seg button small{font-weight:500;opacity:.75;margin-left:4px;font-family:var(--font-mono)}
+.kind-seg{grid-template-columns:repeat(2,1fr)}
+.kind-seg label{position:relative;display:block}
+.kind-seg input{position:absolute;opacity:0;inset:0}
+.kind-seg span{display:block;text-align:center;border-radius:9px;padding:9px 4px;font-size:13px;font-weight:600;color:var(--muted)}
+.kind-seg input:checked+span{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(10,20,50,.14)}
+.kind-seg input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+form:has(input[name=gkind][value=habit]:checked) .only-steps{display:none}
+form:has(input[name=gkind][value=steps]:checked) .only-habit{display:none}
+.only-steps,.only-habit{display:flex;flex-direction:column;gap:12px}
+.dpick{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.dpick label{position:relative}
+.dpick input{position:absolute;opacity:0;inset:0}
+.dpick span{display:block;text-align:center;padding:9px 0;border-radius:9px;border:1.5px solid var(--line);font-size:13px;font-weight:600;color:var(--muted)}
+.dpick input:checked+span{background:var(--accent);border-color:var(--accent);color:#fff}
+.dpick input:focus-visible+span{outline:2px solid var(--accent);outline-offset:2px}
+.field .hint{font-size:12px;color:var(--muted);font-weight:400;letter-spacing:0}
+.hab-sched{font-size:13px;color:var(--muted)}
+.hab-week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.hab-day{display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:0;padding:2px 0;font-size:11px;font-weight:600;color:var(--muted)}
+.hab-day i{width:30px;height:30px;border-radius:9px;border:2px solid var(--line);display:grid;place-items:center;font-style:normal;font-size:12px;color:var(--muted)}
+.hab-day.on i{border-color:var(--gc)}
+.hab-day.done i{background:var(--gc);border-color:var(--gc)}
+.hab-day.done i::after{content:"";width:9px;height:5px;border:2.5px solid var(--surface);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px)}
+.hab-day.miss i{border-style:dashed}
+.hab-day.off i{border-color:transparent;background:var(--surface-2)}
+.hab-day.today{color:var(--ink)}
+.hab-day[disabled]{opacity:.55}
+.hab-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.hab-stats div{background:var(--surface-2);border-radius:10px;padding:8px 10px;min-width:0}
+.hab-stats b{display:block;font-family:var(--font-mono);font-size:18px;color:var(--gc)}
+.hab-stats span{display:block;font-size:12px;color:var(--muted)}
+.wgoal .title small{font-weight:400;color:var(--muted)}
 .switch{width:42px;height:25px;border-radius:999px;background:var(--surface-2);border:1.5px solid var(--line);position:relative;padding:0;flex:none;transition:background .2s}
 .switch::after{content:"";position:absolute;top:2.5px;left:2.5px;width:17px;height:17px;border-radius:50%;background:var(--muted);transition:transform .2s}
 .switch[aria-checked="true"]{background:var(--gc,var(--accent));border-color:var(--gc,var(--accent))}
@@ -215,7 +266,7 @@ h2 small{font-family:var(--font-body);font-size:12px;color:var(--muted);font-wei
 
 /* tabs */
 nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:8;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
-nav.tabs .in{max-width:620px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav.tabs .in{max-width:620px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
 nav.tabs button{background:none;border:0;padding:10px 4px 12px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;font-weight:600;color:var(--muted)}
 nav.tabs button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 nav.tabs button[aria-current="page"]{color:var(--accent)}
@@ -263,7 +314,6 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
 
 <nav class="tabs" aria-label="Розділи">
   <div class="in">
-    <button data-act="tab" data-tab="today"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>Сьогодні</button>
     <button data-act="tab" data-tab="week"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Тиждень</button>
     <button data-act="tab" data-tab="goals"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg>Цілі</button>
     <button data-act="tab" data-tab="month"><svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8.5 14h.01M12 14h.01M15.5 14h.01M8.5 17h.01M12 17h.01"/></svg>Місяць</button>
@@ -280,10 +330,11 @@ nav.tabs button[aria-current="page"]{color:var(--accent)}
    Автономна програма: без сервера, акаунтів і зовнішніх сервісів.
    Усі дані зберігаються лише в localStorage цього браузера під ключем "miy-semestr.v1".
    Перенести їх на інший пристрій можна файлом резервної копії (Профіль → Дані).
-     custom    — пари: {subj, kind, teacher, room, day: 1–6 (пн–сб), pair: 1–7, week: "both"|"chys"|"znam", skip: "never"|"always"|"chys"|"znam"}
+     custom    — пари: {subj, kind, teacher, room, day: 1–6 (пн–сб), pair: 1–7 або 0 (свій час: start, end), week: "both"|"chys"|"znam", skip: "never"|"always"|"chys"|"znam"}
      overrides — зміни до вбудованих пар DEFAULT_CLASSES (зараз порожній)
      settings  — {group, semStart, semEnd ("YYYY-MM-DD"), pairs: {"1":["08:30","09:50"], ...}, mode: "auto"|"chys"|"znam"|"off", flip, name, excluded}
-     goals, events, grades — цілі, події, оцінки */
+     goals     — цілі: kind "steps" (кроки з датами) або "habit" (дні тижня days, start, end, журнал log {"YYYY-MM-DD": true})
+     events, grades — події, оцінки */
 const DEFAULT_PAIRS={1:["08:30","09:50"],2:["10:10","11:30"],3:["11:50","13:10"],4:["13:30","14:50"],5:["15:05","16:25"],6:["16:40","18:00"],7:["18:10","19:30"]};
 function pairs(){return state.settings.pairs||DEFAULT_PAIRS;}
 const DEFAULT_CLASSES=[];
@@ -302,9 +353,9 @@ const EV_KIND={module:{l:"Модуль",c:"mod",v:"--rose"},deadline:{l:"Дед�
 const GCOL={g1:"--accent",g2:"--znam",g3:"--now",g4:"--rose",g5:"--violet"};
 
 /* ---------- стан ---------- */
-const state={custom:{},grades:{},statsOff:0,goals:{},events:{},overrides:{},settings:{flip:false},tab:"today",weekOff:0,monthCur:null,sel:null};
+const state={goalSec:"steps",profSec:null,custom:{},grades:{},statsOff:0,goals:{},events:{},overrides:{},settings:{flip:false},tab:"week",weekOff:0,monthCur:null,sel:null};
 const LS="miy-semestr.v1";
-function loadLocal(){try{const s=JSON.parse(localStorage.getItem(LS)||"null");if(s){state.goals=s.goals||{};state.events=s.events||{};state.overrides=s.overrides||{};state.settings=s.settings||{flip:false};state.grades=s.grades||{};state.custom=s.custom||{};}const t=localStorage.getItem(LS+".tab");if(t)state.tab=t;}catch(e){}}
+function loadLocal(){try{const s=JSON.parse(localStorage.getItem(LS)||"null");if(s){state.goals=s.goals||{};state.events=s.events||{};state.overrides=s.overrides||{};state.settings=s.settings||{flip:false};state.grades=s.grades||{};state.custom=s.custom||{};}const t=localStorage.getItem(LS+".tab");if(t)state.tab=t==="today"?"week":t;}catch(e){}}
 function saveLocal(){try{localStorage.setItem(LS,JSON.stringify({goals:state.goals,events:state.events,overrides:state.overrides,settings:state.settings,grades:state.grades,custom:state.custom}));}catch(e){}}
 
 /* ---------- дати ---------- */
@@ -324,14 +375,32 @@ function dur(min){const h=Math.floor(min/60),m=min%60;return(h?h+" год ":"")+
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 function classes(){return DEFAULT_CLASSES.map(c=>Object.assign({skip:"never"},c,state.overrides[c.id]||{})).concat(Object.entries(state.custom).map(([id,c])=>Object.assign({skip:"never",week:"both",kind:""},c,{id,day:Number(c.day),pair:Number(c.pair),custom:true})));}
+function ctime(c){const P=Number(c.pair)?pairs()[c.pair]:null;return P?[P[0],P[1]]:[c.start||"00:00",c.end||c.start||"00:00"];}
+const pairLbl=c=>Number(c.pair)?c.pair+" пара":c.start;
 function classesOn(d){const ds=ymd(d);if(ds<(state.settings.semStart||SEM_START)||ds>(state.settings.semEnd||SEM_END))return[];const day=(d.getDay()+6)%7+1;if(day>6)return[];const wt=weekType(d);
-  return classes().filter(c=>c.day===day&&!c.hidden&&!isExcl(c.subj)&&(c.week==="both"||wt==="off"||c.week===wt)).map(c=>Object.assign({},c,{skipped:c.skip==="always"||c.skip===wt,start:pairs()[c.pair][0],end:pairs()[c.pair][1]})).sort((a,b)=>a.pair-b.pair);}
+  return classes().filter(c=>c.day===day&&!c.hidden&&!isExcl(c.subj)&&(c.week==="both"||wt==="off"||c.week===wt)).map(c=>Object.assign({},c,{skipped:c.skip==="always"||c.skip===wt,start:ctime(c)[0],end:ctime(c)[1]})).sort((a,b)=>a.start.localeCompare(b.start)||a.pair-b.pair);}
 function goalList(){return Object.entries(state.goals).map(([id,g])=>Object.assign({id},g)).sort((a,b)=>(a.deadline||"9999").localeCompare(b.deadline||"9999")||(a.created||0)-(b.created||0));}
-function progress(g){const s=g.steps||[];const d=s.filter(x=>x.done).length;return{d,t:s.length,p:s.length?Math.round(d/s.length*100):0};}
+const MAX_STEPS=30;
+const isHabit=g=>!!g&&g.kind==="habit";
+const dowN=d=>(d.getDay()+6)%7+1;
+function habitDays(g){return Array.isArray(g.days)&&g.days.length?g.days.map(Number):[1,2,3,4,5];}
+function habitOn(g,ds){if(!isHabit(g)||g.queued)return false;if(g.start&&ds<g.start)return false;if(g.end&&ds>g.end)return false;return habitDays(g).includes(dowN(parse(ds)));}
+function habitStat(g,from,to){const ts=ymd(today0()),log=g.log||{};let t=0,d=0;
+  for(let x=new Date(from);x<=to;x=addDays(x,1)){const ds=ymd(x);if(ds>ts)break;if(!habitOn(g,ds))continue;const done=!!log[ds];if(ds===ts&&!done)continue;t++;if(done)d++;}
+  return{d,t,p:t?Math.round(d/t*100):null};}
+function habitStats(g){const t=today0(),y=t.getFullYear(),m=t.getMonth(),mon=mondayOf(t);
+  return{w:habitStat(g,mon,addDays(mon,6)),m:habitStat(g,new Date(y,m,1),new Date(y,m+1,0)),y:habitStat(g,new Date(y,0,1),new Date(y,11,31))};}
+function daysLabel(g){const d=habitDays(g).slice().sort();const k=d.join("");
+  return k==="12345"?"Щобудня":k==="1234567"?"Щодня":k==="67"?"Щовихідних":d.map(n=>DOW_S[n-1]).join(", ");}
+function splitSteps(text,start,perDay,skipWk){const lines=String(text||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);let d=start?parse(start):null;
+  return lines.map(t=>{let date="";if(d){if(perDay&&skipWk)while(d.getDay()%6===0)d=addDays(d,1);date=ymd(d);if(perDay)d=addDays(d,1);}return{id:uid(),text:t.slice(0,140),date,done:false};});}
+function progress(g){if(isHabit(g)){const m=habitStats(g).m;return{d:m.d,t:0,p:m.p||0,habit:true};}const s=g.steps||[];const d=s.filter(x=>x.done).length;return{d,t:s.length,p:s.length?Math.round(d/s.length*100):0};}
+function isDone(g){if(isHabit(g))return false;const p=progress(g);return !!(p.t&&p.d===p.t);}
 function itemsOn(ds){const out=[];
   for(const[id,e]of Object.entries(state.events))if(e.date===ds)out.push({type:"event",id,e,sort:e.time||"00:00"});
   for(const g of goalList()){if(g.queued)continue;for(const s of g.steps||[])if(s.date===ds)out.push({type:"step",g,s,sort:"99:"+(s.done?1:0)});
-    if(g.deadline===ds)out.push({type:"gdl",g,sort:"98"});}
+    if(g.deadline===ds)out.push({type:"gdl",g,sort:"98"});
+    if(habitOn(g,ds)){const done=!!(g.log||{})[ds];out.push({type:"habit",g,ds,done,sort:"97:"+(done?1:0)});}}
   return out.sort((a,b)=>a.sort.localeCompare(b.sort));}
 
 /* ---------- рендер ---------- */
@@ -345,8 +414,7 @@ function render(){
   if(prof){const ni=$("nameInput");if(document.activeElement!==ni)ni.value=state.settings.name||"";$("avatar").textContent=initials(ni.value);}
   document.querySelectorAll("nav.tabs button").forEach(b=>b.setAttribute("aria-current",b.dataset.tab===state.tab?"page":"false"));
   const v=$("view");
-  if(state.tab==="today")v.innerHTML=viewToday();
-  else if(state.tab==="week")v.innerHTML=viewWeek();
+  if(state.tab==="week")v.innerHTML=viewWeek();
   else if(state.tab==="goals")v.innerHTML=viewGoals();
   else if(state.tab==="month")v.innerHTML=viewMonth();
   else v.innerHTML=viewProfile();
@@ -359,8 +427,8 @@ function heroData(){
   const n=new Date(),nm=n.getHours()*60+n.getMinutes(),t=today0();
   const list=classesOn(t).filter(c=>!c.skipped);
   for(const c of list){const s=toMin(c.start),e=toMin(c.end);
-    if(nm>=s&&nm<e)return{live:true,c,label:"Зараз · "+c.pair+" пара",count:"до кінця "+dur(e-nm),p:Math.round((nm-s)/(e-s)*100)};
-    if(nm<s)return{c,label:"Далі · "+c.pair+" пара",count:"початок о "+c.start+" · через "+dur(s-nm)};}
+    if(nm>=s&&nm<e)return{live:true,c,label:"Зараз · "+pairLbl(c),count:"до кінця "+dur(e-nm),p:Math.round((nm-s)/(e-s)*100)};
+    if(nm<s)return{c,label:"Далі · "+pairLbl(c),count:"початок о "+c.start+" · через "+dur(s-nm)};}
   for(let i=1;i<10;i++){const d=addDays(t,i);const l=classesOn(d).filter(c=>!c.skipped);
     if(l.length)return{c:l[0],label:(i===1?"Завтра":DOW[d.getDay()])+" · перша пара",count:"о "+l[0].start+(list.length?" · на сьогодні пари закінчились":"")};}
   return null;
@@ -378,11 +446,14 @@ function classRow(c,isToday){
   '<div class="time">'+c.start+'<span>'+c.end+'</span></div>'+
   '<div class="body"><div class="title">'+esc(c.subj)+'</div><div class="sub">ауд. '+esc(c.room)+(c.teacher?' · '+esc(c.teacher):'')+'</div>'+
   '<div class="chips"><span class="chip">'+esc(c.kind)+'</span>'+(c.week!=="both"?'<span class="chip">'+(c.week==="chys"?"чис.":"знам.")+'</span>':'')+(c.skipped?'<span class="chip skip">пропускаю</span>':'')+'</div></div>'+
-  '<div class="pairno">'+c.pair+'</div></button>';}
+  '<div class="pairno">'+(c.pair||"")+'</div></button>';}
 function itemRow(it){
   if(it.type==="event"){const k=EV_KIND[it.e.kind]||EV_KIND.personal;
     return '<button class="row" data-act="editEvent" data-id="'+it.id+'"><div class="time">'+(it.e.time?esc(it.e.time):'<span>день</span>')+'</div>'+
     '<div class="body"><div class="title">'+esc(it.e.title)+'</div>'+(it.e.note?'<div class="sub">'+esc(it.e.note)+'</div>':'')+'<div class="chips"><span class="chip '+k.c+'">'+k.l+'</span></div></div><div></div></button>';}
+  if(it.type==="habit"){const gc="var("+(GCOL[it.g.color]||"--accent")+")";const fut=it.ds>ymd(today0());
+    return '<div class="row'+(it.done?" done":"")+'" style="--gc:'+gc+'"><div class="time"><span>звичка</span></div><div class="body"><div class="title">'+esc(it.g.title)+'</div><div class="sub" style="color:'+gc+'">'+daysLabel(it.g)+'</div></div>'+
+    '<button class="check'+(it.done?" on":"")+'" data-act="toggleHabit" data-g="'+it.g.id+'" data-d="'+it.ds+'" aria-label="Виконано"'+(fut?' disabled':'')+'></button></div>';}
   if(it.type==="step"){const gc="var("+(GCOL[it.g.color]||"--accent")+")";
     return '<div class="row'+(it.s.done?" done":"")+'" style="--gc:'+gc+'"><div class="time"><span>крок</span></div><div class="body"><div class="title">'+esc(it.s.text)+'</div><div class="sub" style="color:'+gc+'">'+esc(it.g.title)+'</div></div>'+
     '<button class="check'+(it.s.done?" on":"")+'" data-act="toggleStep" data-g="'+it.g.id+'" data-s="'+it.s.id+'" aria-label="Виконано"></button></div>';}
@@ -395,39 +466,46 @@ function dayAgenda(d){const ds=ymd(d),isT=ds===ymd(today0());const cl=classesOn(
 function upcoming(days){const t=today0(),out=[];
   for(let i=1;i<=days;i++){const ds=ymd(addDays(t,i));for(const it of itemsOn(ds))if(!(it.type==="step"&&it.s.done))out.push(Object.assign({ds},it));}
   return out;}
-function viewToday(){const t=today0();
-  const gl=goalList().filter(g=>!g.queued);
-  let h=classes().length?'':'<section class="onboard"><b>Розклад ще порожній</b><span>Додай свої пари один раз на семестр, далі програма сама покаже, що сьогодні, і врахує чисельник та знаменник. Групу, дати семестру й час пар можна змінити в «Профілі».</span><div class="actions"><button class="btn sm" data-act="addClass">＋ Додати першу пару</button><button class="btn ghost sm" data-act="restore">Відновити з копії</button></div></section>';
-  h+='<section><div id="hero" class="hero"></div></section>';
-  h+='<section><h2>Сьогодні<small>'+WK_LABEL[weekType(t)].toLowerCase()+'</small></h2>'+dayAgenda(t)+'</section>';
-  h+='<section><h2>Цілі<small>'+gl.length+'</small></h2>';
-  if(!gl.length)h+='<div class="agenda"><div class="empty">Цілей поки немає. Відкрий вкладку «Цілі», щоб додати першу.</div></div>';
-  else h+='<div class="mini">'+gl.map(g=>{const p=progress(g);const gc="var("+(GCOL[g.color]||"--accent")+")";
-    return '<button class="mini-goal" style="--gc:'+gc+'" data-act="tab" data-tab="goals"><span class="title">'+esc(g.title)+'</span><b>'+p.p+'%</b><div class="gbar"><i style="width:'+p.p+'%"></i></div></button>';}).join("")+'</div>';
-  return h+'</section>';}
-
+function weekGoals(){const gl=goalList().filter(g=>{if(g.queued)return false;const p=progress(g);return !(p.t&&p.d===p.t);}).sort((a,b)=>progress(b).p-progress(a).p).slice(0,3);
+  let h='<section><h2>Цілі<button class="link" data-act="tab" data-tab="goals">усі цілі</button></h2>';
+  if(!gl.length)return h+'<div class="agenda"><div class="empty">Активних цілей немає. Додай ціль у вкладці «Цілі».</div></div></section>';
+  return h+'<div class="wgoals">'+gl.map(g=>{const p=progress(g);const gc="var("+(GCOL[g.color]||"--accent")+")";
+    return '<button class="wgoal" style="--gc:'+gc+'" data-act="tab" data-tab="goals"><span class="title">'+esc(g.title)+(p.habit?' <small>· цей місяць</small>':'')+'</span><b>'+p.p+'%</b><div class="gbar" role="progressbar" aria-valuenow="'+p.p+'" aria-valuemin="0" aria-valuemax="100" aria-label="'+esc(g.title)+'"><i style="width:'+p.p+'%"></i></div></button>';}).join("")+'</div></section>';}
 function viewWeek(){const mon=addDays(mondayOf(today0()),state.weekOff*7);const wt=weekType(mon);const sun=addDays(mon,6);
-  let h='<section class="nav"><button class="icon-btn" data-act="wk" data-d="-1" aria-label="Попередній тиждень">‹</button><div class="lbl"><b>'+fmtDay(mon)+' – '+fmtDay(sun)+'</b><span style="color:var(--'+(wt==="off"?"muted":wt)+')">'+WK_LABEL[wt]+'</span>'+(state.weekOff?' · <button class="link" data-act="wk" data-d="0">до поточного</button>':'')+'</div><button class="icon-btn" data-act="wk" data-d="1" aria-label="Наступний тиждень">›</button></section>';
+  let h=classes().length?'':'<section class="onboard"><b>Розклад ще порожній</b><span>Додай свої пари один раз на семестр, далі програма сама покаже, що зараз і що далі, і врахує чисельник та знаменник. Групу, дати семестру й час пар можна змінити в «Профілі» → «Розклад».</span><div class="actions"><button class="btn sm" data-act="addClass">＋ Додати першу пару</button><button class="btn ghost sm" data-act="restore">Відновити з копії</button></div></section>';
+  h+='<section><div id="hero" class="hero"></div></section>'+weekGoals();
+  h+='<section class="nav"><button class="icon-btn" data-act="wk" data-d="-1" aria-label="Попередній тиждень">‹</button><div class="lbl"><b>'+fmtDay(mon)+' – '+fmtDay(sun)+'</b><span style="color:var(--'+(wt==="off"?"muted":wt)+')">'+WK_LABEL[wt]+'</span>'+(state.weekOff?' · <button class="link" data-act="wk" data-d="0">до поточного</button>':'')+'</div><button class="icon-btn" data-act="wk" data-d="1" aria-label="Наступний тиждень">›</button></section>';
   h+='<section class="days">';const tds=ymd(today0());
   for(let i=0;i<7;i++){const d=addDays(mon,i),ds=ymd(d);if(i>4&&!itemsOn(ds).length&&!classesOn(d).length)continue;
     h+='<div><div class="day-h'+(ds===tds?" today":"")+'"><span>'+DOW[d.getDay()]+', '+fmtDay(d)+'</span><span>'+(ds===tds?"сьогодні":"")+'</span></div>'+dayAgenda(d)+'</div>';}
   h+='</section>';
   return h;}
 
-function viewGoals(){const gl=goalList();
-  if(!gl.length)return '<section><div class="agenda"><div class="empty">Тут будуть твої цілі з кроками і прогресом. Натисни «＋ Ціль», щоб додати першу: наприклад, «Здати модулі на 80+» з кроком на кожен предмет.</div></div></section>';
-  const card=g=>{const p=progress(g);const prev=g.after&&state.goals[g.after];const nexts=gl.filter(x=>x.queued&&x.after===g.id);const gc="var("+(GCOL[g.color]||"--accent")+")";
+function viewGoals(){const gl=goalList().filter(g=>!isDone(g));const sec=state.goalSec==="habit"?"habit":"steps";const nH=gl.filter(isHabit).length,nS=gl.length-nH;
+  const seg='<section><div class="seg seg2" role="radiogroup" aria-label="Тип цілей"><button role="radio" aria-checked="'+(sec==="steps")+'" data-act="goalSec" data-s="steps">Поетапні<small>'+nS+'</small></button><button role="radio" aria-checked="'+(sec==="habit")+'" data-act="goalSec" data-s="habit">Регулярні<small>'+nH+'</small></button></div></section>';
+  if(!(sec==="habit"?nH:nS))return seg+'<section><div class="agenda"><div class="empty">'+(sec==="habit"?'Тут будуть цілі, які ти виконуєш регулярно, без дедлайну: наприклад, «Зал» щобудня. Натисни «＋ Ціль», щоб додати першу, і побачиш, як часто виконуєш її за тиждень, місяць і рік.':'Тут будуть твої цілі з кроками і прогресом. Натисни «＋ Ціль», щоб додати першу: наприклад, «Здати модулі на 80+» з кроком на кожен предмет.')+'</div></div></section>';
+  const hcard=g=>{const gc="var("+(GCOL[g.color]||"--accent")+")";const st=habitStats(g);const prev=g.after&&state.goals[g.after];const mon=mondayOf(today0()),ts=ymd(today0()),log=g.log||{};
+    const pc=x=>x.p===null?"—":x.p+"%";const sub=x=>x.t?x.d+" з "+x.t:"ще немає днів";
+    return '<section class="goal'+(g.queued?' queued':'')+'" style="--gc:'+gc+'"><div class="goal-head"><div class="t">'+esc(g.title)+'</div><button class="icon-btn" data-act="editGoal" data-id="'+g.id+'" aria-label="Редагувати ціль">✎</button></div>'+
+    (g.note?'<div class="note">'+esc(g.note)+'</div>':'')+
+    (g.queued?'<div class="qnote">Почнеться після «'+esc(prev?prev.title:"попередньої цілі")+'»</div>':'')+
+    '<div class="hab-sched">Регулярна ціль · '+daysLabel(g)+(g.start?' · з '+fmtDay(parse(g.start)):'')+(g.end?' до '+fmtDay(parse(g.end)):'')+'</div>'+
+    '<div class="hab-week">'+[0,1,2,3,4,5,6].map(i=>{const d=addDays(mon,i),ds=ymd(d);const on=habitOn(g,ds),done=!!log[ds],fut=ds>ts;
+      const cls=!on?"off":done?"done":fut||ds===ts?"on":"on miss";
+      return '<button class="hab-day '+cls+(ds===ts?" today":"")+'" data-act="toggleHabit" data-g="'+g.id+'" data-d="'+ds+'"'+(fut||g.queued?' disabled':'')+' aria-label="'+DOW[d.getDay()]+', '+fmtDay(d)+(done?': виконано':': не виконано')+'"><i></i>'+DOW_S[i]+'</button>';}).join("")+'</div>'+
+    '<div class="hab-stats"><div><b>'+pc(st.w)+'</b><span>тиждень</span><span>'+sub(st.w)+'</span></div><div><b>'+pc(st.m)+'</b><span>місяць</span><span>'+sub(st.m)+'</span></div><div><b>'+pc(st.y)+'</b><span>рік</span><span>'+sub(st.y)+'</span></div></div>'+
+    '<div class="note" style="margin:0">Можна відмітити пропущений день цього тижня заднім числом: натисни на нього. Сьогоднішній день рахується, щойно його відмічено.</div></section>';};
+  const card=g=>{if(isHabit(g))return hcard(g);const p=progress(g);const prev=g.after&&state.goals[g.after];const nexts=gl.filter(x=>x.queued&&x.after===g.id);const gc="var("+(GCOL[g.color]||"--accent")+")";
     return '<section class="goal'+(g.queued?' queued':'')+'" style="--gc:'+gc+'"><div class="goal-head"><div class="t">'+esc(g.title)+'</div><button class="icon-btn" data-act="editGoal" data-id="'+g.id+'" aria-label="Редагувати ціль">✎</button></div>'+
     (g.note?'<div class="note">'+esc(g.note)+'</div>':'')+
     (g.queued?'<div class="qnote">Почнеться після «'+esc(prev?prev.title:"попередньої цілі")+'»</div>':'')+
     (nexts.length?'<div class="note">Далі: '+nexts.map(x=>'«'+esc(x.title)+'»').join(", ")+'</div>':'')+
     '<div class="gbar"><i style="width:'+p.p+'%"></i></div><div class="stats"><span>'+p.d+' з '+p.t+' кроків'+(g.deadline?' · до '+fmtDay(parse(g.deadline))+' ('+rel(g.deadline)+')':'')+'</span><b>'+p.p+'%</b></div>'+
     '<div class="steps">'+(g.steps||[]).map(s=>'<div class="step'+(s.done?" done":"")+'"><button class="check'+(s.done?" on":"")+'" data-act="toggleStep" data-g="'+g.id+'" data-s="'+s.id+'" aria-label="Виконано"></button><span class="st">'+esc(s.text)+'</span>'+(s.date?'<span class="sd">'+parse(s.date).getDate()+'.'+pad(parse(s.date).getMonth()+1)+'</span>':'')+'<button class="link" data-act="editStep" data-g="'+g.id+'" data-s="'+s.id+'" aria-label="Змінити крок">⋯</button></div>').join("")+'</div>'+
-    '<div class="shift"><span>'+(g.autoShift?'Пропущений крок переноситься на наступний день разом з рештою графіка':'Зсувати графік, якщо крок пропущено')+'</span><button class="switch" role="switch" aria-checked="'+(g.autoShift?"true":"false")+'" data-act="toggleShift" data-id="'+g.id+'" aria-label="Зсувати графік"></button></div>'+
-    '<div class="shift"><span>'+(g.pullAhead?'Виконане наперед скорочує графік: решта кроків переходить на звільнені дні':'Підтягувати графік, якщо виконано наперед')+'</span><button class="switch" role="switch" aria-checked="'+(g.pullAhead?"true":"false")+'" data-act="togglePull" data-id="'+g.id+'" aria-label="Підтягувати графік"></button></div>'+
+    '<div class="shift"><span>'+((g.autoShift||g.pullAhead)?'Динамічний графік: пропущений крок переноситься на наступний день, а виконане наперед скорочує графік':'Динамічний графік')+'</span><button class="switch" role="switch" aria-checked="'+((g.autoShift||g.pullAhead)?"true":"false")+'" data-act="toggleDyn" data-id="'+g.id+'" aria-label="Динамічний графік"></button></div>'+
     '<div class="actions"><button class="btn ghost sm" data-act="addStep" data-g="'+g.id+'">＋ Крок</button><button class="btn ghost sm" data-act="addNext" data-g="'+g.id+'">＋ Наступна ціль</button></div></section>';};
-  const act=gl.filter(g=>!g.queued),q=gl.filter(g=>g.queued);
-  return act.map(card).join("")+(q.length?'<section class="qsec"><h2>У черзі<small>'+q.length+'</small></h2>'+q.map(card).join("")+'</section>':'');}
+  const mine=gl.filter(g=>isHabit(g)===(sec==="habit"));const act=mine.filter(g=>!g.queued),q=mine.filter(g=>g.queued);
+  return seg+act.map(card).join("")+(q.length?'<section class="qsec"><h2>У черзі<small>'+q.length+'</small></h2>'+q.map(card).join("")+'</section>':'');}
 
 function viewMonth(){const mc=state.monthCur||new Date(today0().getFullYear(),today0().getMonth(),1);state.monthCur=mc;
   const sel=state.sel||ymd(today0());const start=mondayOf(mc);const tds=ymd(today0());
@@ -458,9 +536,10 @@ function weekDone(mon){const days=[],idx={};for(let i=0;i<7;i++){const ds=ymd(ad
   const per={};let pd=0;
   for(const g of goalList()){if(g.queued)continue;for(const s of g.steps||[]){
     if(s.date&&idx[s.date]!==undefined){days[idx[s.date]].plan++;if(s.done)pd++;}
-    if(s.done){const dd=s.doneAt||s.date;if(dd&&idx[dd]!==undefined){days[idx[dd]].done++;per[g.id]=(per[g.id]||0)+1;}}}}
+    if(s.done){const dd=s.doneAt||s.date;if(dd&&idx[dd]!==undefined){days[idx[dd]].done++;per[g.id]=(per[g.id]||0)+1;}}}
+    if(isHabit(g))for(const x of days)if(habitOn(g,x.ds)){x.plan++;if((g.log||{})[x.ds]){x.done++;pd++;per[g.id]=(per[g.id]||0)+1;}}}
   return{days,per,pd};}
-function streak(){const set=new Set();for(const g of goalList())for(const s of g.steps||[])if(s.done&&(s.doneAt||s.date))set.add(s.doneAt||s.date);
+function streak(){const set=new Set();for(const g of goalList()){for(const s of g.steps||[])if(s.done&&(s.doneAt||s.date))set.add(s.doneAt||s.date);for(const[k,v]of Object.entries(g.log||{}))if(v)set.add(k);}
   let d=today0();if(!set.has(ymd(d)))d=addDays(d,-1);let n=0;while(set.has(ymd(d))&&n<1000){n++;d=addDays(d,-1);}return n;}
 
 function viewProfile(){const mon=addDays(mondayOf(today0()),state.statsOff*7);const W=weekDone(mon);const days=W.days;
@@ -471,6 +550,7 @@ function viewProfile(){const mon=addDays(mondayOf(today0()),state.statsOff*7);co
     '<div class="stat"><b>'+thisWeek+'</b><span>'+pl(thisWeek,"крок","кроки","кроків")+' цього тижня</span></div>'+
     '<div class="stat"><b>'+st+'</b><span>'+pl(st,"день","дні","днів")+' поспіль</span></div></section>';
   const max=Math.max(1,...days.map(x=>Math.max(x.plan,x.done)));const tds=ymd(today0());
+  const hTop=h;h='';
   h+='<section><h2>Виконання кроків<small>'+(totalPlan?Math.round(W.pd/totalPlan*100)+'% плану':'')+'</small></h2>'+
     '<div class="nav" style="margin-bottom:10px"><button class="icon-btn" data-act="statsWk" data-d="-1" aria-label="Попередній тиждень">‹</button><div class="lbl"><b>'+fmtDay(mon)+' – '+fmtDay(addDays(mon,6))+'</b>'+(state.statsOff?'<button class="link" data-act="statsWk" data-d="0">до поточного</button>':'цей тиждень')+'</div><button class="icon-btn" data-act="statsWk" data-d="1" aria-label="Наступний тиждень">›</button></div>'+
     '<div class="chart" role="img" aria-label="Виконано '+totalDone+' з '+totalPlan+' запланованих кроків">'+days.map((x,i)=>'<div class="col'+(x.ds===tds?" today":"")+'"><span class="n">'+(x.plan||x.done?x.done+'/'+x.plan:'')+'</span><div class="track"><i class="bp" style="height:'+(x.plan/max*100)+'%"></i><i class="bd" style="height:'+(x.done/max*100)+'%"></i></div><span class="d">'+DOW_S[i]+'</span></div>').join("")+'</div>'+
@@ -478,39 +558,44 @@ function viewProfile(){const mon=addDays(mondayOf(today0()),state.statsOff*7);co
   const pg=all.filter(g=>W.per[g.id]);
   if(pg.length)h+='<div class="agenda" style="margin-top:12px">'+pg.map(g=>'<div class="grow"><div class="body"><div class="title" style="color:var('+(GCOL[g.color]||"--accent")+')">'+esc(g.title)+'</div></div><div class="grade">'+W.per[g.id]+'</div></div>').join("")+'</div>';
   h+='</section>';
-  h+='<section><h2>Досягнуті цілі<small>'+achieved.length+'</small></h2><div class="agenda">'+(achieved.length?achieved.map(g=>'<div class="grow" style="--gc:var('+(GCOL[g.color]||"--accent")+')"><div class="body"><div class="title">'+esc(g.title)+'</div><div class="sub">'+(g.steps||[]).length+' '+pl((g.steps||[]).length,"крок","кроки","кроків")+(g.completedAt?' · виконано '+fmtDay(parse(g.completedAt)):'')+'</div></div><span class="check on" aria-label="Виконано"></span></div>').join(""):'<div class="empty">Тут з’являться цілі, які ти виконаєш повністю.</div>')+'</div></section>';
+  const hAch='<section><h2>Досягнуті цілі<small>'+achieved.length+'</small></h2><div class="agenda">'+(achieved.length?achieved.map(g=>'<div class="grow" style="--gc:var('+(GCOL[g.color]||"--accent")+')"><div class="body"><div class="title">'+esc(g.title)+'</div><div class="sub">'+(g.steps||[]).length+' '+pl((g.steps||[]).length,"крок","кроки","кроків")+(g.completedAt?' · виконано '+fmtDay(parse(g.completedAt)):'')+'</div></div><span class="ach-act"><button class="icon-btn" data-act="editGoal" data-id="'+g.id+'" aria-label="Редагувати ціль">✎</button><button class="check on" data-act="reopenGoal" data-g="'+g.id+'" aria-label="Повернути в цілі"></button></span></div>').join("")+'<div class="empty" style="padding:10px 14px;text-align:left">Зніми галочку, щоб повернути ціль у «Цілі».</div>':'<div class="empty">Тут з’являться цілі, які ти виконаєш повністю.</div>')+'</div></section>';
   const subs=subjects().filter(x=>!isExcl(x)||gradeTotal(state.grades[gid(x)]).has);const tots=subs.map(s=>gradeTotal(state.grades[gid(s)]));const withT=tots.filter(t=>t.has);
   const avg=withT.length?withT.reduce((a,t)=>a+t.total,0)/withT.length:null;
-  h+='<section><h2>Оцінки<small>семінари + екзамен/модуль</small></h2><div class="agenda">'+subs.map((s,i)=>{const t=tots[i];
+  const hGr='<section><h2>Оцінки<small>семінари + екзамен/модуль</small></h2><div class="agenda">'+subs.map((s,i)=>{const t=tots[i];
       const parts=t.has?'семінари '+(t.sem!==null?fmtN(t.sem):'—')+' · екзамен/модуль '+(t.ex!==null?fmtN(t.ex):'—'):'оцінок ще немає';
       return '<button class="grow" data-act="gradeOpen" data-s="'+esc(s)+'"><div class="body"><div class="title">'+esc(s)+'</div><div class="sub">'+parts+'</div></div><div class="grade">'+(t.has?fmtN(t.total):'—')+(t.complete?'<span class="ects '+ECTS(t.total)+'">'+ECTS(t.total)+'</span>':'')+'</div></button>';}).join("")+
     '<div class="grow avg-row"><div class="body"><div class="title">Середній бал</div><div class="sub">'+(withT.length?'середнє арифметичне по '+withT.length+' '+pl(withT.length,"предмету","предметах","предметах"):'з’явиться після першої оцінки')+'</div></div><div class="grade">'+(avg!==null?fmtN(avg):'—')+(avg!==null&&withT.every(t=>t.complete)?'<span class="ects '+ECTS(avg)+'">'+ECTS(avg)+'</span>':'')+'</div></div></div>'+
     '<div class="scale">Шкала ECTS: A 90–100 · B 82–89 · C 75–81 · D 67–74 · E 60–66 · FX 35–59 · F 0–34. Літера з’являється, коли внесено обидві складові.</div></section>';
-  h+=profileSchedule()+profileData();
-  return h;}
+  const sec=state.profSec;
+  if(sec){const back='<section class="subhead"><button class="btn ghost sm" data-act="profSec" data-s="">‹ Профіль</button></section>';
+    return back+(sec==="ach"?hAch:sec==="grades"?hGr:sec==="sched"?schedSettings():sec==="data"?profileData():pairsList());}
+  const allC=classes().filter(c=>!c.hidden);
+  const items=[["ach","Досягнуті цілі",String(achieved.length)],["grades","Оцінки",avg!==null?"середній "+fmtN(avg):"—"],["sched","Розклад","налаштування"],
+    ["pairs","Мої пари/уроки",allC.length+" "+pl(allC.length,"пара","пари","пар")],["data","Дані","резервна копія"]];
+  const menu='<section><div class="agenda">'+items.map(([k,t,m])=>'<button class="grow menu-row" data-act="profSec" data-s="'+k+'"><div class="body"><div class="title">'+t+'</div></div><div class="menu-meta">'+esc(m)+'<span class="chev" aria-hidden="true">›</span></div></button>').join("")+'</div></section>';
+  return hTop+menu+h;}
 
-/* ---------- розклад у профілі: джерело, редагування, виключення ---------- */
+/* ---------- розклад у профілі: налаштування, пари, виключення ---------- */
 function isExcl(subj){const ex=state.settings.excluded;return Array.isArray(ex)&&ex.length>0&&ex.includes(nrm(subj));}
 const nrm=x=>String(x||"").toLowerCase().replace(/[\s.,'’ʼ"«»-]+/g," ").trim();
-function profileSchedule(){const m=state.settings.mode||"auto";const all=classes().filter(c=>!c.hidden);
-  let h='<section><h2>Розклад<small>'+all.length+' '+pl(all.length,"пара","пари","пар")+'</small></h2>'+
-    '<p class="note" style="margin:0">Пари вносиш і змінюєш сам: один раз на семестр, далі програма сама чергує чисельник і знаменник.</p>';
-  h+='<div class="actions" style="margin-top:14px"><button class="btn ghost" data-act="addClass">＋ Додати пару</button><button class="btn ghost" data-act="setup">Група, семестр, час пар</button></div>';
+function schedSettings(){const m=state.settings.mode||"auto";
+  let h='<section><h2>Розклад</h2><div class="actions"><button class="btn" data-act="addClass">＋ Додати пару/урок</button><button class="btn ghost" data-act="setup">Група, семестр, час пар/уроків</button></div>'+
+    '<p class="note" style="margin:8px 0 0">Пари вносиш і змінюєш сам: один раз на семестр, далі програма сама чергує чисельник і знаменник.</p>';
   h+='<h3 class="sub-h">Чисельник і знаменник</h3><div class="seg" role="radiogroup" aria-label="Режим тижнів">'+WK_MODES.map(([k,l])=>'<button role="radio" aria-checked="'+(m===k)+'" data-act="wkMode" data-m="'+k+'">'+l+'</button>').join("")+'</div>'+
     '<p class="note" style="margin:8px 0 0">'+MODE_NOTE[m]+'</p>'+
     (m==="auto"?'<div class="settings-row" style="margin-top:10px"><span>Цей тиждень: '+WK_LABEL[weekType(today0())].toLowerCase()+'. Якщо насправді навпаки, поміняй.</span><button class="btn ghost sm" data-act="flip">Поміняти</button></div>':'');
-  const WKL={both:"",chys:"чис.",znam:"знам."};const SK={always:"пропускаю",chys:"пропускаю по чис.",znam:"пропускаю по знам."};
-  h+='<h3 class="sub-h">Мої пари</h3>';
-  if(!all.length)h+='<div class="agenda"><div class="empty">Пар ще немає. Додай першу кнопкою «＋ Додати пару».</div></div>';
-  else{h+='<div class="plist">';for(let d=1;d<=6;d++){const cs=all.filter(c=>c.day===d).sort((a,b)=>a.pair-b.pair||String(a.week).localeCompare(String(b.week)));if(!cs.length)continue;
-      h+='<div><div class="day-h"><span>'+DOW[d%7]+'</span></div><div class="agenda">'+cs.map(c=>{const P=pairs()[c.pair]||["",""];const ex=isExcl(c.subj);
-        return '<button class="row'+(ex?' skipped':'')+'" data-act="editClass" data-id="'+esc(c.id)+'"><div class="time">'+P[0]+'<span>'+P[1]+'</span></div><div class="body"><div class="title">'+esc(c.subj)+'</div><div class="sub">'+esc([c.kind,c.room&&("ауд. "+c.room),c.teacher].filter(Boolean).join(" · "))+'</div>'+
-          '<div class="chips">'+(WKL[c.week]?'<span class="chip">'+WKL[c.week]+'</span>':'')+(ex?'<span class="chip skip">не відвідую</span>':'')+(SK[c.skip]?'<span class="chip skip">'+SK[c.skip]+'</span>':'')+'</div></div><div class="pairno">'+c.pair+'</div></button>';}).join("")+'</div></div>';}
-    h+='</div><p class="note" style="margin:8px 0 0">Натисни на пару, щоб змінити або видалити її.</p>';}
-  const subs=[...new Set(all.map(c=>c.subj))].sort((a,b)=>a.localeCompare(b,"uk"));
-  if(subs.length)h+='<h3 class="sub-h">Предмети, які я відвідую</h3><p class="note" style="margin:0 0 10px">Вимкни предмет, на який не ходиш. Його пари зникнуть з розкладу, плану дня, календаря й оцінок.</p>'+
-    '<div class="agenda">'+subs.map(x=>{const on=!isExcl(x);return '<div class="grow"><div class="body"><div class="title'+(on?'':' muted')+'">'+esc(x)+'</div></div><button class="switch" role="switch" aria-checked="'+on+'" data-act="toggleSubj" data-s="'+esc(x)+'" aria-label="Відвідую «'+esc(x)+'»"></button></div>';}).join("")+'</div>';
+  h+='<h3 class="sub-h">Скидання</h3><div class="settings-row"><span>Повернути типові налаштування розкладу. Пари, цілі й оцінки залишаться.</span><button class="btn danger sm" data-act="resetSched">Скинути</button></div><div class="settings-row"><span>Видалити всі пари з розкладу. Налаштування, цілі й оцінки залишаться.</span><button class="btn danger sm" data-act="resetPairs">Скинути пари</button></div>';
   return h+'</section>';}
+function pairsList(){const all=classes().filter(c=>!c.hidden);
+  const WKL={both:"",chys:"чис.",znam:"знам."};const SK={always:"пропускаю",chys:"пропускаю по чис.",znam:"пропускаю по знам."};
+  let h='<section><h2>Мої пари/уроки<small>'+all.length+' '+pl(all.length,"пара","пари","пар")+'</small></h2>';
+  if(!all.length)return h+'<div class="agenda"><div class="empty">Пар чи уроків ще немає. Додай перший кнопкою нижче.</div></div><div class="actions" style="margin-top:12px"><button class="btn" data-act="addClass">＋ Додати пару/урок</button></div></section>';
+  h+='<div class="plist">';
+  for(let d=1;d<=6;d++){const cs=all.filter(c=>c.day===d).sort((a,b)=>ctime(a)[0].localeCompare(ctime(b)[0])||a.pair-b.pair||String(a.week).localeCompare(String(b.week)));if(!cs.length)continue;
+    h+='<div><div class="day-h"><span>'+DOW[d%7]+'</span></div><div class="agenda">'+cs.map(c=>{const P=ctime(c);const ex=isExcl(c.subj);
+      return '<button class="row'+(ex?' skipped':'')+'" data-act="editClass" data-id="'+esc(c.id)+'"><div class="time">'+P[0]+'<span>'+P[1]+'</span></div><div class="body"><div class="title">'+esc(c.subj)+'</div><div class="sub">'+esc([c.kind,c.room&&("ауд. "+c.room),c.teacher].filter(Boolean).join(" · "))+'</div>'+
+        '<div class="chips">'+(WKL[c.week]?'<span class="chip">'+WKL[c.week]+'</span>':'')+(ex?'<span class="chip skip">не відвідую</span>':'')+(SK[c.skip]?'<span class="chip skip">'+SK[c.skip]+'</span>':'')+'</div></div><div class="pairno">'+(c.pair||"")+'</div></button>';}).join("")+'</div></div>';}
+  return h+'</div><p class="note" style="margin:8px 0 0">Натисни на пару чи урок, щоб змінити або видалити.</p><div class="actions" style="margin-top:12px"><button class="btn ghost" data-act="addClass">＋ Додати пару/урок</button><button class="btn danger" data-act="resetPairs">Скинути розклад пар</button></div></section>';}
 
 function gradeSheet(subj){const id=gid(subj);const t=gradeTotal(state.grades[id]);
   openSheet('<h3>'+esc(subj)+'</h3><form id="gfMain">'+
@@ -536,26 +621,58 @@ function openSheet(html,onSubmit){$("sheet").innerHTML=html;$("backdrop").hidden
 function closeSheet(){$("backdrop").hidden=true;$("sheet").innerHTML="";sheetSubmit=null;}
 const fv=(f,n)=>(f.elements[n]?f.elements[n].value:"").trim();
 
-function goalForm(id,after){const g=id?state.goals[id]:{title:"",deadline:"",color:"g1",note:"",queued:!!after,after:after||"",perDay:!!after};
+function goalForm(id,after,kind){const g=id?state.goals[id]:{kind:kind==="habit"?"habit":"steps",title:"",deadline:"",color:"g1",note:"",queued:!!after,after:after||"",perDay:!!after};
+  const hab=isHabit(g),canSwitch=!id||!(g.steps||[]).length,tds=ymd(today0());const hd=habitDays(g);
   openSheet('<h3>'+(id?"Редагувати ціль":after?"Наступна ціль":"Нова ціль")+'</h3>'+(g.queued&&state.goals[g.after]?'<div class="note" style="margin:-8px 0 12px">З’явиться, щойно виконаєш «'+esc(state.goals[g.after].title)+'». Дати кроків перерахуються від наступного дня.</div>':'')+'<form>'+
+  (canSwitch?'<div class="seg kind-seg" role="radiogroup" aria-label="Тип цілі"><label><input type="radio" name="gkind" value="steps"'+(hab?'':' checked')+'><span>З кроками</span></label><label><input type="radio" name="gkind" value="habit"'+(hab?' checked':'')+'><span>Регулярна</span></label></div>':'<input type="hidden" name="gkind" value="'+(hab?"habit":"steps")+'">')+
   '<div class="field"><label for="gTitle">Ціль</label><input id="gTitle" name="title" required maxlength="120" value="'+esc(g.title)+'" placeholder="Напр., прочитати «Державу» Платона"></div>'+
   '<div class="field"><label for="gNote">Нотатка</label><input id="gNote" name="note" maxlength="200" value="'+esc(g.note||"")+'" placeholder="Навіщо або як міряти"></div>'+
-  '<div class="field"><label for="gDl">Дедлайн</label><input id="gDl" type="date" name="deadline" value="'+esc(g.deadline||"")+'"></div>'+
-  (g.queued?'<label class="cb"><input type="checkbox" id="gPer" name="perDay"'+(g.perDay?" checked":"")+'><span>Розкласти кроки по одному на день від старту. Дедлайн стане на день останнього кроку.</span></label>':'')+
+  '<div class="only-steps">'+
+    '<div class="field"><label for="gDl">Дедлайн</label><input id="gDl" type="date" name="deadline" value="'+esc(hab?"":(g.deadline||""))+'"></div>'+
+    (g.queued?'<label class="cb"><input type="checkbox" id="gPer" name="perDay"'+(g.perDay?" checked":"")+'><span>Розкласти кроки по одному на день від старту. Дедлайн стане на день останнього кроку.</span></label>':'')+
+    (!id?'<div class="field"><label for="gSteps">Кроки <span class="hint">· кожен з нового рядка, до '+MAX_STEPS+'</span></label><textarea id="gSteps" name="steps" rows="4" placeholder="Розділ 1&#10;Розділ 2&#10;Розділ 3"></textarea></div>'+
+      (!g.queued?'<div class="field"><label for="gStart">Перший крок</label><input id="gStart" type="date" name="sstart" value="'+tds+'"></div>'+
+      '<label class="cb"><input type="checkbox" name="sper" checked><span>По одному кроку на день, починаючи з цієї дати</span></label>'+
+      '<label class="cb"><input type="checkbox" name="swk"><span>Пропускати суботу й неділю</span></label>':''):'')+
+  '</div>'+
+  '<div class="only-habit">'+
+    '<div class="field"><label>Дні</label><div class="dpick">'+DOW_S.map((x,i)=>'<label><input type="checkbox" name="hday" value="'+(i+1)+'"'+(hd.includes(i+1)?" checked":"")+' aria-label="'+x+'"><span>'+x+'</span></label>').join("")+'</div></div>'+
+    (!g.queued?'<div class="field"><label for="hStart">Початок</label><input id="hStart" type="date" name="hstart" value="'+esc(g.start||tds)+'"></div>':'')+
+    '<div class="field"><label for="hEnd">Кінець <span class="hint">· необов’язково</span></label><input id="hEnd" type="date" name="hend" value="'+esc(g.end||"")+'"></div>'+
+    '<div class="note" style="margin:0">Без дедлайну. Ціль щодня з’являтиметься в розкладі, а в «Цілях» буде видно, як часто ти її виконуєш за тиждень, місяць і рік.</div>'+
+  '</div>'+
   '<div class="field"><label>Колір</label><div class="swatches">'+Object.entries(GCOL).map(([k,v])=>'<label><input type="radio" name="color" value="'+k+'"'+(g.color===k?" checked":"")+' aria-label="'+k+'"><span style="--sc:var('+v+')"></span></label>').join("")+'</div></div>'+
   '<div class="actions"><button class="btn" type="submit">Зберегти</button><button class="btn ghost" type="button" data-act="close">Скасувати</button>'+(id?'<button class="btn danger" type="button" data-act="delGoal" data-id="'+id+'">Видалити</button>':'')+'</div></form>',
-  f=>{const col=(f.querySelector("input[name=color]:checked")||{}).value||"g1";
-    const ng=Object.assign({},g,{title:fv(f,"title"),note:fv(f,"note"),deadline:fv(f,"deadline"),color:col,perDay:!!(f.elements.perDay&&f.elements.perDay.checked),steps:g.steps||[],created:g.created||Date.now()});
-    const nid=id||uid();state.goals[nid]=ng;closeSheet();save();});}
+  f=>{const col=(f.querySelector("input[name=color]:checked")||{}).value||"g1";const kind=(f.querySelector("input[name=gkind]:checked")||f.elements.gkind||{}).value||"steps";
+    const base=Object.assign({},g,{title:fv(f,"title"),note:fv(f,"note"),color:col,created:g.created||Date.now()});let ng;
+    if(kind==="habit"){const days=[...f.querySelectorAll("input[name=hday]:checked")].map(x=>Number(x.value));if(!days.length){toast("Обери хоча б один день");return;}
+      const end=fv(f,"hend"),start=g.queued?(g.start||""):(fv(f,"hstart")||tds);if(end&&start&&end<start){toast("Кінець раніше за початок");return;}
+      ng=Object.assign(base,{kind:"habit",days,start,end,deadline:"",steps:[],log:g.log||{},autoShift:false,pullAhead:false,perDay:false});}
+    else{let steps=(g.steps||[]).slice();
+      if(!id&&f.elements.steps){const raw=f.elements.steps.value;const n=raw.split(/\n+/).filter(x=>x.trim()).length;
+        steps=splitSteps(raw,g.queued?"":fv(f,"sstart"),!!(f.elements.sper&&f.elements.sper.checked),!!(f.elements.swk&&f.elements.swk.checked)).slice(0,MAX_STEPS);
+        if(n>MAX_STEPS)toast("Додано перші "+MAX_STEPS+" кроків: це максимум для однієї цілі");}
+      let dl=fv(f,"deadline");if(!dl&&!id&&steps.length&&steps[steps.length-1].date&&f.elements.sper&&f.elements.sper.checked)dl=steps[steps.length-1].date;
+      ng=Object.assign(base,{kind:"steps",deadline:dl,perDay:!!(f.elements.perDay&&f.elements.perDay.checked),steps});delete ng.days;delete ng.start;delete ng.end;}
+    delete ng.id;const nid=id||uid();state.goals[nid]=ng;state.goalSec=kind==="habit"?"habit":"steps";closeSheet();save();});}
 
 function stepForm(gid,sid){const g=state.goals[gid];if(!g)return;const s=sid?(g.steps||[]).find(x=>x.id===sid):{text:"",date:""};
-  openSheet('<h3>'+(sid?"Змінити крок":"Новий крок")+'</h3><div class="note" style="margin:-8px 0 12px">'+esc(g.title)+'</div><form>'+
+  const left=MAX_STEPS-(g.steps||[]).length;if(!sid&&left<=0){toast("У цілі вже "+MAX_STEPS+" кроків: це максимум");return;}
+  if(!sid){openSheet('<h3>Нові кроки</h3><div class="note" style="margin:-8px 0 12px">'+esc(g.title)+' · можна додати ще '+left+'</div><form>'+
+    '<div class="field"><label for="sText">Що зробити <span class="hint">· кожен крок з нового рядка</span></label><textarea id="sText" name="text" required rows="4" placeholder="Питання 1–3&#10;Питання 4–6"></textarea></div>'+
+    '<div class="field"><label for="sDate">Перший крок (з’явиться в календарі)</label><input id="sDate" type="date" name="date" value=""></div>'+
+    '<label class="cb"><input type="checkbox" name="sper"><span>Кожен наступний крок на наступний день</span></label>'+
+    '<label class="cb"><input type="checkbox" name="swk"><span>Пропускати суботу й неділю</span></label>'+
+    '<div class="actions"><button class="btn" type="submit">Додати</button><button class="btn ghost" type="button" data-act="close">Скасувати</button></div></form>',
+    f=>{const raw=f.elements.text.value;const n=raw.split(/\n+/).filter(x=>x.trim()).length;if(!n)return;
+      const add=splitSteps(raw,fv(f,"date"),f.elements.sper.checked,f.elements.swk.checked).slice(0,left);
+      const ng=Object.assign({},g,{steps:(g.steps||[]).concat(add)});ng.completedAt="";state.goals[gid]=ng;closeSheet();save();
+      toast(n>left?"Додано "+add.length+" з "+n+": у цілі не більше "+MAX_STEPS+" кроків":add.length===1?"Крок додано":"Додано "+add.length+" "+pl(add.length,"крок","кроки","кроків"));});return;}
+  openSheet('<h3>Змінити крок</h3><div class="note" style="margin:-8px 0 12px">'+esc(g.title)+'</div><form>'+
   '<div class="field"><label for="sText">Що зробити</label><input id="sText" name="text" required maxlength="140" value="'+esc(s.text)+'"></div>'+
   '<div class="field"><label for="sDate">Коли (з’явиться в календарі)</label><input id="sDate" type="date" name="date" value="'+esc(s.date||"")+'"></div>'+
-  '<div class="actions"><button class="btn" type="submit">Зберегти</button><button class="btn ghost" type="button" data-act="close">Скасувати</button>'+(sid?'<button class="btn danger" type="button" data-act="delStep" data-g="'+gid+'" data-s="'+sid+'">Видалити</button>':'')+'</div></form>',
-  f=>{const steps=(g.steps||[]).map(x=>Object.assign({},x));
-    if(sid){const x=steps.find(y=>y.id===sid);x.text=fv(f,"text");x.date=fv(f,"date");}
-    else steps.push({id:uid(),text:fv(f,"text"),date:fv(f,"date"),done:false});
+  '<div class="actions"><button class="btn" type="submit">Зберегти</button><button class="btn ghost" type="button" data-act="close">Скасувати</button><button class="btn danger" type="button" data-act="delStep" data-g="'+gid+'" data-s="'+sid+'">Видалити</button></div></form>',
+  f=>{const steps=(g.steps||[]).map(x=>Object.assign({},x));const x=steps.find(y=>y.id===sid);x.text=fv(f,"text");x.date=fv(f,"date");
     const ng=Object.assign({},g,{steps});state.goals[gid]=ng;closeSheet();save();});}
 
 function eventForm(id,date){const e=id?state.events[id]:{title:"",date:date||ymd(today0()),time:"",kind:"deadline",note:""};
@@ -571,9 +688,11 @@ function classForm(id){const ex=id?classes().find(x=>x.id===id):null;if(id&&!ex)
   const c=ex||{day:1,pair:1,subj:"",kind:"лекція",teacher:"",room:"",week:"both",skip:"never",custom:true};
   const sel=(n,opts,v)=>'<select id="c'+n+'" name="'+n+'">'+opts.map(([k,l])=>'<option value="'+k+'"'+(String(v)===String(k)?" selected":"")+'>'+l+'</option>').join("")+'</select>';
   const P=pairs();
-  openSheet('<h3>'+(id?DOW[c.day%7]+' · '+c.pair+' пара':'Нова пара')+'</h3><form>'+
+  const T=ctime(c);
+  openSheet('<h3>'+(id?DOW[c.day%7]+' · '+(Number(c.pair)?c.pair+' пара':T[0]+'–'+T[1]):'Нова пара/урок')+'</h3><form>'+
   '<div class="field"><label for="csubj">Предмет</label><input id="csubj" name="subj" required maxlength="80" value="'+esc(c.subj)+'" placeholder="Напр., Теорія держави і права"></div>'+
-  '<div class="two"><div class="field"><label for="cday">День</label>'+sel("day",[1,2,3,4,5,6].map(d=>[d,DOW[d%7]]),c.day)+'</div><div class="field"><label for="cpair">Пара</label>'+sel("pair",Object.keys(P).map(k=>[k,k+' · '+P[k][0]+'–'+P[k][1]]),c.pair)+'</div></div>'+
+  '<div class="two"><div class="field"><label for="cday">День</label>'+sel("day",[1,2,3,4,5,6].map(d=>[d,DOW[d%7]]),c.day)+'</div><div class="field"><label for="cpair">Час</label>'+sel("pair",Object.keys(P).map(k=>[k,k+' пара · '+P[k][0]+'–'+P[k][1]]).concat([["0","Свій час"]]),Number(c.pair)||0)+'</div></div>'+
+  '<div class="two ctime"><div class="field"><label for="cstart">Початок</label><input id="cstart" type="time" name="start" value="'+esc(T[0]==="00:00"&&!c.start?"":T[0])+'"></div><div class="field"><label for="cend">Кінець</label><input id="cend" type="time" name="end" value="'+esc(T[1]==="00:00"&&!c.end?"":T[1])+'"></div></div>'+
   '<div class="two"><div class="field"><label for="ckind">Тип</label><input id="ckind" name="kind" list="kinds" value="'+esc(c.kind)+'"><datalist id="kinds"><option value="лекція"><option value="практичне"><option value="семінар"><option value="лабораторне"></datalist></div><div class="field"><label for="croom">Аудиторія</label><input id="croom" name="room" value="'+esc(c.room)+'"></div></div>'+
   '<div class="field"><label for="cteacher">Викладач</label><input id="cteacher" name="teacher" value="'+esc(c.teacher)+'"></div>'+
   '<div class="two"><div class="field"><label for="cweek">Коли</label>'+sel("week",[["both","щотижня"],["chys","чисельник"],["znam","знаменник"]],c.week)+'</div>'+
@@ -582,6 +701,7 @@ function classForm(id){const ex=id?classes().find(x=>x.id===id):null;if(id&&!ex)
   (id&&c.custom?'<button class="btn danger" type="button" data-act="delClass" data-id="'+esc(id)+'">Видалити пару</button>':'')+
   (id&&!c.custom&&state.overrides[id]?'<button class="btn danger" type="button" data-act="resetClass" data-id="'+esc(id)+'">Як у розкладі</button>':'')+'</div></form>',
   f=>{const o={subj:fv(f,"subj"),kind:fv(f,"kind"),room:fv(f,"room"),teacher:fv(f,"teacher"),week:fv(f,"week"),skip:fv(f,"skip"),day:Number(fv(f,"day")),pair:Number(fv(f,"pair"))};
+    if(!o.pair){const a=fv(f,"start"),b=fv(f,"end");if(!a||!b){toast("Вкажи початок і кінець");return;}if(b<=a){toast("Кінець має бути пізніше за початок");return;}o.start=a;o.end=b;}
     closeSheet();
     if(id&&!c.custom){state.overrides[id]=o;save();}
     else{const nid=id||uid();state.custom[nid]=o;save();toast(id?"Пару змінено":"Пару додано");}});}
@@ -590,7 +710,7 @@ function setupForm(){const s=state.settings,P=pairs();
   openSheet('<h3>Налаштування розкладу</h3><form>'+
   '<div class="field"><label for="sGroup">Група</label><input id="sGroup" name="group" maxlength="30" value="'+esc(s.group||"")+'" placeholder="Напр., ЮРД-12"></div>'+
   '<div class="two"><div class="field"><label for="sStart">Початок семестру</label><input id="sStart" type="date" name="semStart" required value="'+esc(s.semStart||SEM_START)+'"></div><div class="field"><label for="sEnd">Кінець семестру</label><input id="sEnd" type="date" name="semEnd" required value="'+esc(s.semEnd||SEM_END)+'"></div></div>'+
-  '<div class="field"><label>Час пар</label><div class="ptimes">'+Object.keys(DEFAULT_PAIRS).map(k=>{const v=P[k]||DEFAULT_PAIRS[k];return '<span class="pn">'+k+'</span><input type="time" id="ps'+k+'" name="ps'+k+'" aria-label="Початок '+k+' пари" value="'+esc(v[0])+'"><input type="time" id="pe'+k+'" name="pe'+k+'" aria-label="Кінець '+k+' пари" value="'+esc(v[1])+'">';}).join("")+'</div></div>'+
+  '<div class="field"><label>Час пар/уроків</label><div class="ptimes">'+Object.keys(DEFAULT_PAIRS).map(k=>{const v=P[k]||DEFAULT_PAIRS[k];return '<span class="pn">'+k+'</span><input type="time" id="ps'+k+'" name="ps'+k+'" aria-label="Початок '+k+' пари" value="'+esc(v[0])+'"><input type="time" id="pe'+k+'" name="pe'+k+'" aria-label="Кінець '+k+' пари" value="'+esc(v[1])+'">';}).join("")+'</div></div>'+
   '<div class="actions"><button class="btn" type="submit">Зберегти</button><button class="btn ghost" type="button" data-act="close">Скасувати</button></div></form>',
   f=>{const pr={};for(const k of Object.keys(DEFAULT_PAIRS)){const a=fv(f,"ps"+k),b=fv(f,"pe"+k);if(!a||!b||a>=b){toast("Перевір час "+k+" пари: початок має бути раніше за кінець");return;}pr[k]=[a,b];}
     if(fv(f,"semStart")>fv(f,"semEnd")){toast("Початок семестру має бути раніше за кінець");return;}
@@ -646,24 +766,30 @@ function activateNext(gid){const start=addDays(today0(),1);let first="";
       if(dated.length){const min=dated.reduce((a,s)=>s.date<a?s.date:a,dated[0].date);const delta=Math.round((start-parse(min))/864e5);
         steps=steps.map(s=>(!s.done&&s.date)?Object.assign(s,{date:ymd(addDays(parse(s.date),delta))}):s);
         if(deadline)deadline=ymd(addDays(parse(deadline),delta));}}
-    const nx=Object.assign({},x,{queued:false,steps,deadline,started:ymd(today0())});state.goals[k]=nx;save();first=first||x.title;}
+    const nx=Object.assign({},x,{queued:false,steps,deadline,started:ymd(today0())});if(isHabit(x)){nx.start=ymd(start);nx.deadline="";}state.goals[k]=nx;save();first=first||x.title;}
   return first;}
 
 /* ---------- дії ---------- */
 const ACT={
-  tab:d=>{state.tab=d.tab;try{localStorage.setItem(LS+".tab",d.tab);}catch(e){}render();window.scrollTo(0,0);},
+  tab:d=>{state.tab=d.tab;if(d.tab==="profile")state.profSec=null;try{localStorage.setItem(LS+".tab",d.tab);}catch(e){}render();window.scrollTo(0,0);},
   wk:d=>{state.weekOff=d.d==="0"?0:state.weekOff+Number(d.d);render();},
   mon:d=>{const m=state.monthCur;state.monthCur=new Date(m.getFullYear(),m.getMonth()+Number(d.d),1);render();},
   selDay:d=>{state.sel=d.d;render();},
-  fab:()=>{if(state.tab==="goals")goalForm();else eventForm(null,state.tab==="month"?state.sel:null);},
+  fab:()=>{if(state.tab==="goals")goalForm(null,null,state.goalSec);else eventForm(null,state.tab==="month"?state.sel:null);},
   close:closeSheet,
   editGoal:d=>goalForm(d.id),
   addStep:d=>stepForm(d.g),
+  goalSec:d=>{state.goalSec=d.s;render();},
   addClass:()=>classForm(null),
-  backup:backup,
-  restore:()=>{const i=$("restoreFile");i.value="";i.click();},
+  profSec:d=>{state.profSec=d.s||null;render();window.scrollTo(0,0);},
+  resetSched:()=>openSheet('<h3>Скинути налаштування розкладу?</h3><p class="note" style="margin:0 0 14px">Повернуться типові значення: група, дати семестру, час пар, чергування чисельника й знаменника, і всі предмети знову з’являться в розкладі. Пари, цілі, події й оцінки залишаться.</p><div class="actions"><button class="btn danger" data-act="resetSchedDo">Скинути</button><button class="btn ghost" data-act="close">Скасувати</button></div>',null),
+  resetPairs:()=>{const n=classes().filter(x=>!x.hidden).length;if(!n){toast("Пар ще немає");return;}openSheet('<h3>Скинути розклад пар?</h3><p class="note" style="margin:0 0 14px">Буде видалено всі '+n+' '+pl(n,"пару","пари","пар")+'. Після цього розклад можна додати заново в розділі «Розклад». Налаштування, цілі, події й оцінки залишаться.</p><div class="actions"><button class="btn danger" data-act="resetPairsDo">Видалити всі пари</button><button class="btn ghost" data-act="close">Скасувати</button></div>',null);},
+  resetPairsDo:()=>{state.custom={};state.overrides={};closeSheet();save();toast("Розклад пар скинуто");},
+  resetSchedDo:()=>{const ns={flip:false};if(state.settings.name)ns.name=state.settings.name;state.settings=ns;closeSheet();save();toast("Налаштування розкладу скинуто");},
   toggleSubj:d=>{const k=nrm(d.s);const ex=Array.isArray(state.settings.excluded)?state.settings.excluded.slice():[];const i=ex.indexOf(k);if(i>=0)ex.splice(i,1);else ex.push(k);
     state.settings=Object.assign({},state.settings,{excluded:ex});save();toast(i>=0?"«"+d.s+"» знову в розкладі":"«"+d.s+"» сховано з розкладу");},
+  backup:backup,
+  restore:()=>{const i=$("restoreFile");i.value="";i.click();},
   setup:setupForm,
   delClass:d=>{delete state.custom[d.id];closeSheet();save();toast("Пару видалено");},
   statsWk:d=>{state.statsOff=d.d==="0"?0:state.statsOff+Number(d.d);render();},
@@ -673,11 +799,18 @@ const ACT={
   editStep:d=>stepForm(d.g,d.s),
   editEvent:d=>eventForm(d.id),
   editClass:d=>classForm(d.id),
+  reopenGoal:d=>{const g=state.goals[d.g];if(!g)return;const st=(g.steps||[]).slice();let k=-1;st.forEach((x,i)=>{if(x.done&&(k<0||(x.doneAt||"")>=(st[k].doneAt||"")))k=i;});if(k<0)return;
+    st[k]=Object.assign({},st[k],{done:false,doneAt:""});const ng=Object.assign({},g,{steps:st,completedAt:""});delete ng.id;state.goals[d.g]=ng;save();toast("«"+ng.title+"» повернуто в «Цілі»: крок «"+st[k].text+"» знову не виконаний");},
   toggleStep:d=>{const g=state.goals[d.g];if(!g)return;const steps=(g.steps||[]).map(x=>x.id===d.s?Object.assign({},x,{done:!x.done,doneAt:!x.done?ymd(today0()):""}):x);let ng=Object.assign({},g,{steps});
     if(ng.pullAhead){const r=compact(ng);if(r){ng=r.ng;if(r.gain>0)toast("Графік «"+ng.title+"» підтягнуто на "+r.gain+" дн.");}}
     state.goals[d.g]=ng;
     const p=progress(ng);ng.completedAt=(p.t&&p.d===p.t)?(g.completedAt||ymd(today0())):"";state.goals[d.g]=ng;save();
-    if(p.t&&p.d===p.t&&!ng.queued){const n=activateNext(d.g);toast("Ціль «"+ng.title+"» виконана"+(n?". Далі: «"+n+"»":""));}},
+    if(p.t&&p.d===p.t&&!ng.queued){const n=activateNext(d.g);toast("Ціль «"+ng.title+"» досягнута і перенесена в «Досягнуті цілі»"+(n?". Далі: «"+n+"»":""));}},
+  toggleHabit:d=>{const g=state.goals[d.g];if(!g||!isHabit(g))return;if(d.d>ymd(today0())){toast("Цей день ще не настав");return;}
+    const log=Object.assign({},g.log||{});if(log[d.d])delete log[d.d];else log[d.d]=true;const ng=Object.assign({},g,{log});delete ng.id;state.goals[d.g]=ng;save();
+    if(log[d.d]){const st=habitStats(ng);toast("Відмічено. Цей тиждень: "+(st.w.p===null?"—":st.w.p+"%"));}},
+  toggleDyn:d=>{const g=state.goals[d.id];if(!g)return;const on=!(g.autoShift||g.pullAhead);const ng=Object.assign({},g,{autoShift:on,pullAhead:on});state.goals[d.id]=ng;
+    save();if(on){toast("Динамічний графік увімкнено");applyShifts();}else toast("Динамічний графік вимкнено");},
   toggleShift:d=>{const g=state.goals[d.id];if(!g)return;const ng=Object.assign({},g,{autoShift:!g.autoShift});state.goals[d.id]=ng;
     save();if(ng.autoShift){toast("Автозсув увімкнено");applyShifts();}else toast("Автозсув вимкнено");},
   togglePull:d=>{const g=state.goals[d.id];if(!g)return;const ng=Object.assign({},g,{pullAhead:!g.pullAhead});state.goals[d.id]=ng;
@@ -696,7 +829,7 @@ document.addEventListener("click",e=>{if(e.target===$("backdrop")){closeSheet();
 document.addEventListener("submit",e=>{e.preventDefault();if(sheetSubmit)sheetSubmit(e.target);});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("backdrop").hidden)closeSheet();});
 let lastDay=ymd(today0());
-function tick(){const d=ymd(today0());if(d!==lastDay){lastDay=d;applyShifts();if($("backdrop").hidden)render();}else if(state.tab==="today"&&$("backdrop").hidden)renderHero();}
+function tick(){const d=ymd(today0());if(d!==lastDay){lastDay=d;applyShifts();if($("backdrop").hidden)render();}else if(state.tab==="week"&&$("backdrop").hidden){renderHero();}}
 setInterval(tick,30000);
 document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick();});
 
